@@ -1,8 +1,8 @@
-@import "tools/reset";
-@import "tools/variables";
+@tailwind preflight;
 
-@import "elements/**/*.css";
-@import "components/**/*.css";
-@import "helpers/**/*.css";
+@import './bootstrap';
 
-@import "vendor/**/*.css";
+@import './vendor/hljs';
+@import './vendor/turbolinks';
+
+@tailwind utilities;

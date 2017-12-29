@@ -1,0 +1,45 @@
+* {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    -webkit-font-smoothing: inherit;
+
+    &:after,
+    &:before {
+        box-sizing: inherit;
+    }
+}
+
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+body {
+}
+
+h1 {
+    font-size: inherit; /* Reset normalize 2em */
+}
+
+a {
+    text-decoration: none;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img,
+svg {
+    display: block;
+    vertical-align: middle;
+}
+
+table {
+    border-collapse: collapse;
+}

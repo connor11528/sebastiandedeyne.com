@@ -1,5 +1,10 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const glob = require('glob-all');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const inProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
     entry: {
@@ -34,3 +39,25 @@ module.exports = {
         }),
     ],
 };
+
+if (inProduction) {
+    module.exports.plugins.push(new PurgecssPlugin({
+        paths: glob.sync([
+            path.join(__dirname, 'app/**/*.php'),
+            path.join(__dirname, 'resources/views/**/*.blade.php'),
+        ]),
+        whitelistPatterns: [
+            /turbolinks-/,
+        ],
+        extractors: [
+            {
+                extractor: class {
+                    static extract(content) {
+                        return content.match(/[A-z0-9-:\/]+/g) || [];
+                    }
+                },
+                extensions: ['html', 'js', 'php'],
+            },
+        ],
+    }));
+}
